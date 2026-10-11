@@ -1,0 +1,6 @@
+{
+  "name": "RasoiScale — Indian & Tamil Nadu Recipe Rescaler",
+  "description": "Precision recipe scaling calculator with worked-out formulas, regional Tamil Nadu & Indian presets, chef culinary rules, and theme-adaptive PNG & PDF export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

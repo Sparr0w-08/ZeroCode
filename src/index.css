@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+:root {
+  /* Warm Sandalwood, Cardamom & Saffron Light Palette (No stark white!) */
+  --bg: #F5EBE1;
+  --surface: #ECE1D2;
+  --card-bg: #FAF4EB;
+  --card-subtle: #E6D8C5;
+  --border: rgba(180, 83, 9, 0.26);
+  --border-subtle: rgba(180, 83, 9, 0.15);
+  --text: #261D17;
+  --text-secondary: #57463A;
+  --muted: #7E6C5F;
+  --accent: #D97706;
+  --accent-hover: #B45309;
+  --accent-light: #FDEECC;
+  --glow: rgba(217, 119, 6, 0.44);
+  --glow-subtle: rgba(217, 119, 6, 0.24);
+  --stepper-bg: #E8D9C5;
+  --stepper-text: #78350F;
+  --error-bg: #FEE2E2;
+  --error-text: #B91C1C;
+  --success-bg: #DCFCE7;
+  --success-text: #15803D;
+}
+
+.dark {
+  /* Tandoor Charcoal & Saffron Embers Dark Palette */
+  --bg: #120E0B;
+  --surface: #1A130D;
+  --card-bg: #221A13;
+  --card-subtle: #2C2118;
+  --border: rgba(245, 158, 11, 0.28);
+  --border-subtle: rgba(245, 158, 11, 0.15);
+  --text: #FEF3C7;
+  --text-secondary: #E7E5E4;
+  --muted: #A8A29E;
+  --accent: #F59E0B;
+  --accent-hover: #FBBF24;
+  --accent-light: #2E2114;
+  --glow: rgba(245, 158, 11, 0.52);
+  --glow-subtle: rgba(245, 158, 11, 0.22);
+  --stepper-bg: #2E2219;
+  --stepper-text: #FDE68A;
+  --error-bg: #450A0A;
+  --error-text: #FCA5A5;
+  --success-bg: #052E16;
+  --success-text: #86EFAC;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background-color 260ms ease, color 260ms ease;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-size: 15px;
+}
+
+/* Desktop typography scale up */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16.5px;
+  }
+}
+@media (min-width: 1280px) {
+  body {
+    font-size: 17.5px;
+  }
+}
+
+/* Glow on hover interactive classes */
+.glow-section {
+  transition: box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 260ms ease;
+}
+.glow-section:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 30px var(--glow), 0 10px 30px -4px rgba(0, 0, 0, 0.12);
+}
+
+.glow-card {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease, border-color 220ms ease;
+}
+.glow-card:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 24px var(--glow), 0 8px 20px -4px rgba(0, 0, 0, 0.14);
+  transform: translateY(-2px);
+}
+
+.glow-btn {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+.glow-btn:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 18px var(--glow);
+  transform: translateY(-1px);
+}
+
+.glow-pill {
+  transition: all 180ms ease;
+}
+.glow-pill:hover {
+  box-shadow: 0 0 14px var(--glow);
+  border-color: var(--accent);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Hide spin buttons cleanly or style them */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Exact Color Retention for PDF / Print Output */
+* {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* Print Styles for PDF / Print Output */
+@media print {
+  @page {
+    margin: 0.8cm;
+    size: auto;
+  }
+
+  html, body {
+    font-size: 11pt !important;
+    background: transparent !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide interactive app UI elements when printing */
+  header,
+  footer,
+  main,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Unhide print modal elements and eliminate fixed/overflow clipping */
+  .print-modal-overlay {
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    backdrop-filter: none !important;
+    z-index: auto !important;
+  }
+
+  .print-modal-dialog {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+  }
+
+  .print-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+
+  .print-paper-sheet {
+    box-shadow: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print-page-break-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* When printing in Dark Theme */
+  .print-theme-dark {
+    background-color: #120E0B !important;
+    color: #FEF3C7 !important;
+  }
+  .print-theme-dark .print-paper-sheet {
+    background-color: #1A130D !important;
+    border: 1px solid rgba(245, 158, 11, 0.45) !important;
+    color: #FEF3C7 !important;
+  }
+  .print-theme-dark .print-box {
+    background-color: #241A12 !important;
+    border: 1px solid rgba(245, 158, 11, 0.25) !important;
+    color: #FEF3C7 !important;
+  }
+  .print-theme-dark .print-row-odd {
+    background-color: #1E150F !important;
+  }
+  .print-theme-dark .print-text-muted {
+    color: #A8A29E !important;
+  }
+  .print-theme-dark .print-text-accent {
+    color: #F59E0B !important;
+  }
+  .print-theme-dark .print-divider {
+    border-color: rgba(245, 158, 11, 0.25) !important;
+  }
+
+  /* When printing in Light Theme */
+  .print-theme-light {
+    background-color: #F5EBE1 !important;
+    color: #261D17 !important;
+  }
+  .print-theme-light .print-paper-sheet {
+    background-color: #FAF4EB !important;
+    border: 1px solid rgba(180, 83, 9, 0.35) !important;
+    color: #261D17 !important;
+  }
+  .print-theme-light .print-box {
+    background-color: #ECE1D2 !important;
+    border: 1px solid rgba(180, 83, 9, 0.22) !important;
+    color: #261D17 !important;
+  }
+  .print-theme-light .print-row-odd {
+    background-color: #F5EBE1 !important;
+  }
+  .print-theme-light .print-text-muted {
+    color: #7E6C5F !important;
+  }
+  .print-theme-light .print-text-accent {
+    color: #D97706 !important;
+  }
+  .print-theme-light .print-divider {
+    border-color: rgba(180, 83, 9, 0.2) !important;
+  }
+
+  /* When printing in Eco / Monochrome Theme */
+  .print-theme-eco {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+  }
+  .print-theme-eco .print-paper-sheet {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    color: #111827 !important;
+  }
+  .print-theme-eco .print-box {
+    background-color: #f9fafb !important;
+    border: 1px solid #e5e7eb !important;
+    color: #111827 !important;
+  }
+  .print-theme-eco .print-text-muted {
+    color: #6b7280 !important;
+  }
+  .print-theme-eco .print-text-accent {
+    color: #111827 !important;
+  }
+}
